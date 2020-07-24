@@ -1,0 +1,5 @@
+.DS_Store
+.npmrc
+.env
+.idea
+node_modules
