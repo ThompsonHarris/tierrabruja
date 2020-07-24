@@ -19,8 +19,6 @@ body {
 body {
   font-family: $font-primary;
   font-weight: 400;
-  /*font-size: 16px;*/
-  color: $color-grey;
 }
 
 .Main {
@@ -38,4 +36,7 @@ body {
     rgba(255, 255, 255, 1) 38%,
     rgba(0, 212, 255, 1) 100%
   );
+  &_logo {
+    fill: $color-blue;
+  }
 }
