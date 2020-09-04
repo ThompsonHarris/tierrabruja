@@ -1,0 +1,17 @@
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+.cusLG-blue {
+  background: linear-gradient(
+    338deg,
+    rgba(255, 255, 255, 1) 38%,
+    rgba(0, 212, 255, 1) 100%
+  );
+}
+
+.cus-blue {
+  color: rgb(60, 104, 129);
+}
