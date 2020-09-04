@@ -1,7 +1,11 @@
 import React from 'react';
 import './app.css';
+import { connect } from 'react-redux';
 //components
 import Logo from './components/Icons/Logo.jsx';
+import Form from './components/form/Form.jsx';
+//actions
+import { navDialogueMenu } from './redux/nav/nav.actions';
 
 class App extends React.Component {
   render() {
@@ -13,4 +17,8 @@ class App extends React.Component {
   }
 }
 
-export default App;
+const mapDispatchToProps = (dispatch) => ({
+  navDialogueMenu: () => dispatch(navDialogueMenu()),
+});
+
+export default connect(null, mapDispatchToProps)(App);
