@@ -21847,6 +21847,10 @@ video {
   color: rgb(60, 104, 129);
 }
 
+.cus-bg-blue {
+  background: rgb(60, 104, 129);
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;

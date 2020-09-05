@@ -1,5 +1,9 @@
 import React from 'react';
 import Input from '../../input/Input.jsx';
+import { connect } from 'react-redux';
+import TextField from '../../input/TextField.jsx';
+import { sendEmail } from '../../../redux/nav/nav.actions.js';
+import { validateEmail } from '../../../utils/index.js';
 
 class Email extends React.Component {
   state = {};
@@ -7,8 +11,26 @@ class Email extends React.Component {
     this.setState({
       [e.target.title]: e.target.value,
     });
-    console.log(this.state);
   };
+
+  sendMessage = () => {
+    console.log('attempt');
+    if (
+      this.state.Name &&
+      this.state.Email &&
+      this.state.Subject &&
+      this.state.Message &&
+      validateEmail(this.state.Email)
+    ) {
+      this.props.sendMail(
+        this.state.Name,
+        this.state.Email,
+        this.state.Subject,
+        this.state.Message
+      );
+    }
+  };
+
   render() {
     return (
       <div className='w-full flex flex-col justify-around self-center overflow-hidden'>
@@ -28,6 +50,12 @@ class Email extends React.Component {
           value={this.state.Email}
         />
         <Input
+          label='Subject'
+          placeholder='Enter your Subject'
+          onChange={(e) => this.onChange(e)}
+          value={this.state.Subject}
+        />
+        <TextField
           label='Message'
           placeholder='Enter your message'
           onChange={(e) => this.onChange(e)}
@@ -35,9 +63,9 @@ class Email extends React.Component {
         />
         <button
           className={
-            'w-5/6 self-center shadow bg-gray-600 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded mt-6'
+            'w-5/6 self-center shadow bg-gray-600 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded my-6'
           }
-          onClick={(e) => console.log('...sending email')}
+          onClick={(e) => this.sendMessage(e)}
         >
           send
         </button>
@@ -46,4 +74,9 @@ class Email extends React.Component {
   }
 }
 
-export default Email;
+const mapDispatchToProps = (dispatch) => ({
+  sendMail: (name, email, subject, text) =>
+    dispatch(sendEmail(name, email, subject, text)),
+});
+
+export default connect(null, mapDispatchToProps)(Email);

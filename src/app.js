@@ -17,7 +17,7 @@ class App extends React.Component {
             className='text-center cursor-pointer font-bold cus-blue animate-bounce'
             onClick={() => this.props.navDialogueMenu('email', 50, 50)}
           >
-            email us
+            summon us
           </a>
         </div>
         <Form />
