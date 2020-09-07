@@ -15,7 +15,7 @@ class App extends React.Component {
           <Logo className='fill-current cus-blue' />
           <a
             className='text-center cursor-pointer font-bold cus-blue animate-bounce'
-            onClick={() => this.props.navDialogueMenu('email', 50, 50)}
+            onClick={() => this.props.navDialogueMenu('email', 75, 65)}
           >
             summon us
           </a>
