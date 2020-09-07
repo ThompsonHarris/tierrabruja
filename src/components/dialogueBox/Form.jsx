@@ -18,7 +18,7 @@ class Form extends React.Component {
   render() {
     return (
       <div
-        className='fixed bg-white transition-all duration-500 ease-in-out flex flex-row justify-start invisible text-black border shadow-lg h-auto overflow-hidden'
+        className='fixed bg-white transition-all duration-500 ease-in-out flex flex-row justify-start invisible text-black border shadow-lg h-auto overflow-hidden sm:w-1/3 w-5/6'
         style={{
           visibility: this.props.dialogueMenu ? 'visible' : 'hidden',
           transform: this.props.dialogueMenu
@@ -27,12 +27,8 @@ class Form extends React.Component {
           top: this.props.dialogueMenu
             ? `${Math.abs(this.props.dialogueHeight - 100) / 2}vh`
             : 0,
-
-          width: this.props.dialogueMenu
-            ? `${this.props.dialuogeWidth}vw`
-            : '50vw',
-          minHeight: this.props.dialogueMenu
-            ? `${this.props.dialogueHeight}vh`
+          bottom: this.props.dialogueMenu
+            ? `${Math.abs(this.props.dialogueHeight - 100) / 2}vh`
             : 0,
         }}
       >
