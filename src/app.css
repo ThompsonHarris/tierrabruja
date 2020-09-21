@@ -736,6 +736,10 @@ video {
   height: 100vh;
 }
 
+.text-xl {
+  font-size: 1.25rem;
+}
+
 .text-2xl {
   font-size: 1.5rem;
 }
@@ -752,6 +756,11 @@ video {
 .my-6 {
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .mb-1 {
@@ -860,6 +869,12 @@ video {
   --text-opacity: 1;
   color: #4a5568;
   color: rgba(74, 85, 104, var(--text-opacity));
+}
+
+.text-red-300 {
+  --text-opacity: 1;
+  color: #feb2b2;
+  color: rgba(254, 178, 178, var(--text-opacity));
 }
 
 .visible {
@@ -973,6 +988,11 @@ video {
     -webkit-animation-timing-function: cubic-bezier(0,0,0.2,1);
             animation-timing-function: cubic-bezier(0,0,0.2,1);
   }
+}
+
+.animate-bounce {
+  -webkit-animation: bounce 1s infinite;
+          animation: bounce 1s infinite;
 }
 
 .cusLG-blue {
