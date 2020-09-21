@@ -14,7 +14,6 @@ class Email extends React.Component {
   };
 
   sendMessage = () => {
-    console.log('attempt');
     if (
       this.state.Name &&
       this.state.Email &&

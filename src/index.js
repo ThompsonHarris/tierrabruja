@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import { store } from './redux/store';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Switch } from 'react-router-dom';
-import App from './app';
+import App from './app.jsx';
 
 render(
   <Provider store={store}>
