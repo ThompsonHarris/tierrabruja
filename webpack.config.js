@@ -4,7 +4,7 @@ const config = {
   mode: 'production',
   entry: path.join(__dirname, 'src'),
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, 'dist/js/'),
     filename: 'main.js',
   },
   devtool: 'source-map',

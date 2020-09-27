@@ -1,10 +1,10 @@
 import { NAV_TYPES } from './nav.types';
 import axios from 'axios';
 
-export const navDialogueMenu = (type, width, height) => {
+export const navDialogueMenu = (type, option = '') => {
   return {
     type: NAV_TYPES.DIALOGUE_MENU,
-    payload: { type: type, width: width, height: height },
+    payload: { type: type, option: option },
   };
 };
 
@@ -15,7 +15,7 @@ export const sendEmail = (name, email, subject, text) => {
       .then(({ data: { message } }) => {
         console.log('message:', message);
         if (message === 'success') {
-          dispatch(navDialogueMenu('', 0, 0));
+          dispatch(navDialogueMenu(''));
         } else {
           console.log('there was an error!!');
         }

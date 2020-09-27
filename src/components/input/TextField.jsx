@@ -3,7 +3,7 @@ import React from 'react';
 class TextField extends React.Component {
   render() {
     return (
-      <div className='w-5/6 self-center flex flex-col justify-start'>
+      <div className='w-full self-center flex flex-col justify-start'>
         <div className='block text-gray-500 font-bold  mb-1  pr-4'>
           {this.props.label}
         </div>

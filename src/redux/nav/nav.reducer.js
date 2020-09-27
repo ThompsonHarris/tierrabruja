@@ -3,8 +3,7 @@ import { NAV_TYPES } from './nav.types';
 const initialState = {
   dialogueMenu: false,
   dialogueType: '',
-  DialogueWidth: 0,
-  DialogueHeight: 0,
+  DialogueOption: '',
 };
 
 export const NavReducer = (state = initialState, action) => {
@@ -14,8 +13,7 @@ export const NavReducer = (state = initialState, action) => {
         ...state,
         dialogueMenu: !state.dialogueMenu,
         dialogueType: action.payload.type,
-        DialogueWidth: action.payload.width,
-        DialogueHeight: action.payload.height,
+        DialogueOption: action.payload.option,
       };
     default:
       return state;

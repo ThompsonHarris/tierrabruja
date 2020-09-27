@@ -1,10 +1,12 @@
 import React from 'react';
 import Input from '../input/Input.jsx';
 import { connect } from 'react-redux';
-//cpmponent
 import Email from './email/Email.jsx';
 import LogIn from './logIn/LogIn.jsx';
-//actions
+import AddProject from './project/AddProject.jsx';
+import AddUser from './user/AddUser.jsx';
+import EditProject from './project/EditProject.jsx';
+
 import { navDialogueMenu } from '../../redux/nav/nav.actions.js';
 
 class Form extends React.Component {
@@ -30,10 +32,13 @@ class Form extends React.Component {
         <div class='bg-white font-bold rounded-lg border shadow-lg sm:p-10 p-0 w-full relative'>
           {this.props.type === 'email' ? <Email /> : null}
           {this.props.type === 'login' ? <LogIn /> : null}
+          {this.props.type === 'add user' ? <AddUser /> : null}
+          {this.props.type === 'add project' ? <AddProject /> : null}
+          {this.props.type === 'edit project' ? <EditProject /> : null}
           <div
             className=' absolute top-0 right-0 modal-close cursor-pointer z-30 w-8 h-8 pt-3 pr-3 flex flex-row justify-center'
             onClick={() => {
-              this.props.navDialogueMenu('', 0, 0);
+              this.props.navDialogueMenu('');
             }}
           >
             <svg
@@ -58,8 +63,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  navDialogueMenu: (str, width, height) =>
-    dispatch(navDialogueMenu(str, width, height)),
+  navDialogueMenu: (str) => dispatch(navDialogueMenu(str)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Form);
