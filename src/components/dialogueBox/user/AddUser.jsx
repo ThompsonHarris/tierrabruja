@@ -1,9 +1,8 @@
 import React from 'react';
 import Input from '../../input/Input.jsx';
 import { connect } from 'react-redux';
-import TextField from '../../input/TextField.jsx';
-import { sendEmail } from '../../../redux/nav/nav.actions.js';
 import { validateEmail } from '../../../utils/index.js';
+import { createUser } from '../../../redux/admin/admin.actions.js';
 
 class AddUser extends React.Component {
   state = {};
@@ -13,20 +12,22 @@ class AddUser extends React.Component {
     });
   };
 
-  sendMessage = () => {
+  handleUser = () => {
     if (
-      this.state.Name &&
+      this.state.FirstName &&
+      this.state.LastName &&
       this.state.Email &&
-      this.state.Subject &&
-      this.state.Message &&
-      validateEmail(this.state.Email)
+      this.state.Password &&
+      validateEmail(this.state.Email) &&
+      this.state.Password === this.state.ConfirmPassword
     ) {
-      this.props.sendMail(
-        this.state.Name,
-        this.state.Email,
-        this.state.Subject,
-        this.state.Message
-      );
+      this.props.createUser({
+        firstname: this.state.FirstName,
+        lastname: this.state.LastName,
+        email: this.state.Email,
+        password: this.state.Password,
+        isAdmin: false,
+      });
     }
   };
 
@@ -37,10 +38,16 @@ class AddUser extends React.Component {
           Add a User
         </div>
         <Input
-          label='Name'
+          label='FirstName'
           placeholder='Enter your name'
           onChange={(e) => this.onChange(e)}
-          value={this.state.Name}
+          value={this.state.FirstName}
+        />
+        <Input
+          label='LastName'
+          placeholder='Enter your name'
+          onChange={(e) => this.onChange(e)}
+          value={this.state.LastName}
         />
         <Input
           label='Email'
@@ -55,7 +62,7 @@ class AddUser extends React.Component {
           value={this.state.Password}
         />
         <Input
-          label='Confirm Password'
+          label='ConfirmPassword'
           placeholder='Confirm password'
           onChange={(e) => this.onChange(e)}
           value={this.state.ConfirmPassword}
@@ -64,7 +71,7 @@ class AddUser extends React.Component {
           className={
             'w-full self-center shadow bg-gray-600 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded my-6'
           }
-          onClick={(e) => this.sendMessage(e)}
+          onClick={(e) => this.handleUser(e)}
         >
           create user
         </button>
@@ -74,8 +81,7 @@ class AddUser extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  sendMail: (name, email, subject, text) =>
-    dispatch(sendEmail(name, email, subject, text)),
+  createUser: (user) => dispatch(createUser(user)),
 });
 
 export default connect(null, mapDispatchToProps)(AddUser);

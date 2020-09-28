@@ -6,6 +6,7 @@ import LogIn from './logIn/LogIn.jsx';
 import AddProject from './project/AddProject.jsx';
 import AddUser from './user/AddUser.jsx';
 import EditProject from './project/EditProject.jsx';
+import EditUser from './user/EditUser.jsx';
 
 import { navDialogueMenu } from '../../redux/nav/nav.actions.js';
 
@@ -33,6 +34,7 @@ class Form extends React.Component {
           {this.props.type === 'email' ? <Email /> : null}
           {this.props.type === 'login' ? <LogIn /> : null}
           {this.props.type === 'add user' ? <AddUser /> : null}
+          {this.props.type === 'edit user' ? <EditUser /> : null}
           {this.props.type === 'add project' ? <AddProject /> : null}
           {this.props.type === 'edit project' ? <EditProject /> : null}
           <div

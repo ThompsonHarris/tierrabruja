@@ -5,7 +5,6 @@ class Row extends React.Component {
     return (
       <div className='bg-white lg:hover:bg-gray-100 flex flex-row flex-wrap mb-10 lg:mb-0'>
         {Object.entries(this.props.data).map(([key, val]) => {
-          console.log(key);
           if (key === 'actions') {
             const { edit, remove } = val;
             return (

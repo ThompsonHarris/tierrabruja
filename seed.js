@@ -7,7 +7,6 @@ const seed = async () => {
       firstname: 'Tierra',
       lastname: 'Bruja',
       email: 'admin@tierrabruja.com',
-      username: 'admin',
       password: 'password',
       isAdmin: true,
     });
