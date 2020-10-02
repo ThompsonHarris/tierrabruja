@@ -8,6 +8,7 @@ import Beehive from './components/Icons/beehive.jsx';
 import { connect } from 'react-redux';
 import { verify } from './redux/user/user.actions';
 import Form from './components/dialogueBox/Form.jsx';
+import FormOption from './components/SecondaryDialogueMenu/FormOption.jsx';
 
 class App extends React.Component {
   componentDidMount() {
@@ -33,6 +34,7 @@ class App extends React.Component {
           </Link>
         </div>
         <Form />
+        <FormOption />
       </div>
     );
   }

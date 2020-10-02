@@ -6,7 +6,7 @@ import moment from 'moment';
 class Preview extends React.Component {
   render() {
     return (
-      <div className='w-full self-center flex flex-col justify-start'>
+      <div className='w-full self-center flex flex-col justify-start '>
         <div className='self-center flex flex-col justify-center overflow-hidden text-gray-500 font-bold'>
           <NoImage className='cus-fill-blue' />
         </div>

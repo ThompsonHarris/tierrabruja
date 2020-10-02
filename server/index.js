@@ -4,6 +4,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const { db } = require('./models/index');
 const cookieParser = require('cookie-parser');
+const fileUpload = require('express-fileupload');
 require('dotenv').config();
 
 const PORT = process.env.PORT || 3000;
@@ -11,6 +12,8 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 
 app.use(cookieParser());
+
+app.use(fileUpload());
 
 app.use(express.json());
 

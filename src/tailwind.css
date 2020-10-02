@@ -24,3 +24,7 @@
   fill: rgb(60, 104, 129);
   color: rgb(60, 104, 129);
 }
+
+.h-80per {
+  max-height: 80vh;
+}

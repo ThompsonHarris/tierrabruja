@@ -13,11 +13,11 @@ class EditUser extends React.Component {
 
   render() {
     return (
-      <div className='w-full flex flex-col justify-around self-center overflow-hidden'>
+      <div className='w-full flex flex-col justify-around self-center pb-4 h-80per'>
         <div className='w-5/6 self-center text-center text-2xl font-bold text-gray-600 my-4'>
           Edit User
         </div>
-        <div className='w-full'>
+        <div className='w-full overflow-scroll'>
           <ul className='flex'>
             <li
               className={
@@ -74,7 +74,7 @@ class EditUser extends React.Component {
               </a>
             </li>
           </ul>
-          <div className='bg-white text-black border shadow-lg p-10 rounded-tr-lg rounded-br-lg rounded-bl-lg'>
+          <div className='bg-white text-black border shadow-lg p-10 rounded-tr-lg rounded-br-lg rounded-bl-lg h-full'>
             {this.state.displayPanel === 'edit' ? <EditDetails /> : null}
             {this.state.displayPanel === 'preview' ? <Preview /> : null}
             {this.state.displayPanel === 'assets' ? <ManageAssets /> : null}

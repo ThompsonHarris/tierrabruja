@@ -10,4 +10,7 @@ Project.belongsTo(User);
 Project.hasMany(Image);
 Image.belongsTo(Project);
 
+User.hasMany(Image);
+Image.belongsTo(User);
+
 module.exports = { db, Project, Image, User, Session };

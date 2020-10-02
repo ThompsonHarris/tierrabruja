@@ -1,6 +1,7 @@
 import { ADMIN_TYPES } from './admin.types';
 import { navDialogueMenu } from '../nav/nav.actions';
 import axios from 'axios';
+import { fbStorage } from '../../Firebase/Firebase.utils.js';
 
 export const setUsers = (users) => ({
   type: ADMIN_TYPES.SET_USERS,
@@ -103,6 +104,33 @@ export const deleteUser = (id) => {
       })
       .catch((error) => {
         console.log(error);
+      });
+  };
+};
+
+export const deleteImage = (image) => {
+  return async (dispatch) => {
+    if (image.fullImagePath) {
+      const fullImage = await fbStorage.ref(image.fullImagePath);
+      await fullImage.delete();
+    }
+    if (image.thumbImagePath) {
+      const thumbImage = await fbStorage.ref(image.thumbImagePath);
+      await thumbImage.delete();
+    }
+    axios.delete(`/api/user/image/${image.id}`).then((response) => {
+      dispatch(getUser(image.userId));
+      dispatch(getUsers());
+    });
+  };
+};
+
+export const moveImage = (oldPos, newPos, id) => {
+  return (dispatch) => {
+    axios
+      .put('/api/user/image/move', { oldPos, newPos, id })
+      .then((response) => {
+        dispatch(getUser(id));
       });
   };
 };
