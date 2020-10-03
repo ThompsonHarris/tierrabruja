@@ -2,6 +2,7 @@ import { USER_TYPES } from './user.types';
 
 const initialState = {
   loggedIn: false,
+  id: '',
   username: '',
   privilege: 0,
   error: '',
@@ -18,6 +19,11 @@ export const UserReducer = (state = initialState, action) => {
       return {
         ...state,
         username: action.payload,
+      };
+    case USER_TYPES.SET_USERID:
+      return {
+        ...state,
+        id: action.payload,
       };
     case USER_TYPES.SET_PRIVILEGE:
       return {

@@ -188,12 +188,14 @@ userRouter.post('/', validateAuth(), (req, res, next) => {
 
 userRouter.delete('/:id', validateAuth(), (req, res, next) => {
   const { id } = req.params;
-  User.destroy({
-    where: {
-      id,
-    },
+  User.findByPk(id, {
+    include: [{ model: Image }],
+    order: [[Image, 'order', 'ASC']],
   })
-    .then(() => res.status(200).send({ message: `${id} succesfully deleted` }))
+    .then((user) => user.DeleteAll())
+    .then((message) =>
+      res.status(200).send({ message: `${id} ${message} deleted` })
+    )
     .catch((err) => next(err));
 });
 

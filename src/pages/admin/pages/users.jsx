@@ -18,6 +18,12 @@ class User extends React.Component {
     this.props.navDialogueMenu('edit user');
   };
 
+  HandleDelete = (id, images) => {
+    if (id !== this.props.curUser) {
+      this.props.deleteUser(id, images);
+    }
+  };
+
   render() {
     return (
       <div className='w-full px-4 md:px-0 md:mt-8 mb-16 text-gray-800 leading-normal'>
@@ -34,7 +40,7 @@ class User extends React.Component {
                 status: 'active',
                 actions: {
                   edit: (e) => this.HandleEdit(user.id),
-                  remove: (e) => this.props.deleteUser(user.id),
+                  remove: (e) => this.HandleDelete(user.id, user.images),
                 },
               };
             }),
@@ -48,13 +54,14 @@ class User extends React.Component {
 
 const mapStateToProps = (state) => ({
   users: state.admin.users,
+  curUser: state.user.id,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   navDialogueMenu: (str) => dispatch(navDialogueMenu(str)),
   getUsers: () => dispatch(getUsers()),
   getUser: (id) => dispatch(getUser(id)),
-  deleteUser: (id) => dispatch(deleteUser(id)),
+  deleteUser: (id, images) => dispatch(deleteUser(id, images)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(User);

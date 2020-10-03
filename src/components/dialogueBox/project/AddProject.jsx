@@ -2,8 +2,7 @@ import React from 'react';
 import Input from '../../input/Input.jsx';
 import { connect } from 'react-redux';
 import TextField from '../../input/TextField.jsx';
-import { sendEmail } from '../../../redux/nav/nav.actions.js';
-import { validateEmail } from '../../../utils/index.js';
+import { createProject } from '../../../redux/admin/admin.actions.js';
 
 class AddProject extends React.Component {
   state = {};
@@ -13,21 +12,14 @@ class AddProject extends React.Component {
     });
   };
 
-  sendMessage = () => {
-    if (
-      this.state.Name &&
-      this.state.Email &&
-      this.state.Subject &&
-      this.state.Message &&
-      validateEmail(this.state.Email)
-    ) {
-      this.props.sendMail(
-        this.state.Name,
-        this.state.Email,
-        this.state.Subject,
-        this.state.Message
-      );
-    }
+  handleProject = () => {
+    this.props.createProject({
+      title: this.state.Title,
+      address: this.state.Address,
+      state: this.state.State,
+      city: this.state.City,
+      status: this.state.Status,
+    });
   };
 
   render() {
@@ -37,28 +29,40 @@ class AddProject extends React.Component {
           Add a Project
         </div>
         <Input
-          label='Name'
-          placeholder='Enter project name'
+          label='Title'
+          placeholder='Enter project tile'
           onChange={(e) => this.onChange(e)}
-          value={this.state.Name}
+          value={this.state.Title}
         />
         <Input
-          label='Location'
-          placeholder='Enter project location'
+          label='Address'
+          placeholder='Enter project adress'
           onChange={(e) => this.onChange(e)}
-          value={this.state.Location}
+          value={this.state.Address}
+        />
+        <Input
+          label='City'
+          placeholder='Enter project city'
+          onChange={(e) => this.onChange(e)}
+          value={this.state.City}
+        />
+        <Input
+          label='State'
+          placeholder='Enter project state'
+          onChange={(e) => this.onChange(e)}
+          value={this.state.State}
         />
         <Input
           label='Status'
           placeholder='Enter current project status'
           onChange={(e) => this.onChange(e)}
-          value={this.state.Password}
+          value={this.state.Status}
         />
         <button
           className={
             'w-full self-center shadow bg-gray-600 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded my-6'
           }
-          onClick={(e) => this.sendMessage(e)}
+          onClick={(e) => this.handleProject(e)}
         >
           create project
         </button>
@@ -68,8 +72,7 @@ class AddProject extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  sendMail: (name, email, subject, text) =>
-    dispatch(sendEmail(name, email, subject, text)),
+  createProject: (project) => dispatch(createProject(project)),
 });
 
 export default connect(null, mapDispatchToProps)(AddProject);

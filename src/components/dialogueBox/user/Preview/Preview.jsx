@@ -8,7 +8,11 @@ class Preview extends React.Component {
     return (
       <div className='w-full self-center flex flex-col justify-start '>
         <div className='self-center flex flex-col justify-center overflow-hidden text-gray-500 font-bold'>
-          <NoImage className='cus-fill-blue' />
+          {this.props.user.images.length ? (
+            <img src={this.props.user.images[0].thumbImage} className='' />
+          ) : (
+            <NoImage className='cus-fill-blue' />
+          )}
         </div>
         <div className='block text-gray-500 font-bold  mb-1  pr-4'>
           User Id: {this.props.user.id}

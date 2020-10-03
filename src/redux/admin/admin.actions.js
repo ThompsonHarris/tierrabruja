@@ -18,10 +18,12 @@ export const selectUser = (user) => ({
   payload: user,
 });
 
-export const selectProject = (project) => ({
-  type: ADMIN_TYPES.SEL_PPROJECT,
-  payload: project,
-});
+export const selectProject = (project) => {
+  return {
+    type: ADMIN_TYPES.SEL_PROJECT,
+    payload: project,
+  };
+};
 
 export const getUser = (id) => {
   return (dispatch) => {
@@ -95,8 +97,18 @@ export const updateUser = (id, user) => {
   };
 };
 
-export const deleteUser = (id) => {
-  return (dispatch) => {
+export const deleteUser = (id, images) => {
+  return async (dispatch) => {
+    for (let i = 0; i < images.length; i++) {
+      if (images[i].fullImagePath) {
+        const fullImage = await fbStorage.ref(images[i].fullImagePath);
+        await fullImage.delete();
+      }
+      if (images[i].thumbImagePath) {
+        const thumbImage = await fbStorage.ref(images[i].thumbImagePath);
+        await thumbImage.delete();
+      }
+    }
     axios
       .delete(`/api/user/${id}`)
       .then((response) => {
@@ -131,6 +143,112 @@ export const moveImage = (oldPos, newPos, id) => {
       .put('/api/user/image/move', { oldPos, newPos, id })
       .then((response) => {
         dispatch(getUser(id));
+      });
+  };
+};
+
+export const getProject = (id) => {
+  return (dispatch) => {
+    axios
+      .get(`/api/project/${id}`)
+      .then((response) => {
+        console.log(response.data);
+        dispatch(selectProject(response.data));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+};
+
+export const getProjects = () => {
+  return (dispatch) => {
+    axios
+      .get('/api/project')
+      .then((response) => {
+        dispatch(setProjects(response.data));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+};
+
+export const createProject = (project) => {
+  return (dispatch) => {
+    axios
+      .post('/api/project', project)
+      .then((response) => {
+        dispatch(getProjects());
+        dispatch(navDialogueMenu(''));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+};
+
+export const updateProject = (id, project) => {
+  return (dispatch) => {
+    axios
+      .put(`/api/project/${id}`, { project })
+      .then((response) => {
+        dispatch(getProject(id));
+        dispatch(getProjects());
+        dispatch(navDialogueMenu(''));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+};
+
+export const deleteProject = (id, images) => {
+  return async (dispatch) => {
+    for (let i = 0; i < images.length; i++) {
+      if (images[i].fullImagePath) {
+        const fullImage = await fbStorage.ref(images[i].fullImagePath);
+        await fullImage.delete();
+      }
+      if (images[i].thumbImagePath) {
+        const thumbImage = await fbStorage.ref(images[i].thumbImagePath);
+        await thumbImage.delete();
+      }
+    }
+    axios
+      .delete(`/api/project/${id}`)
+      .then((response) => {
+        dispatch(getProjects());
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+};
+
+export const deleteProjectImage = (image) => {
+  return async (dispatch) => {
+    if (image.fullImagePath) {
+      const fullImage = await fbStorage.ref(image.fullImagePath);
+      await fullImage.delete();
+    }
+    if (image.thumbImagePath) {
+      const thumbImage = await fbStorage.ref(image.thumbImagePath);
+      await thumbImage.delete();
+    }
+    axios.delete(`/api/project/image/${image.id}`).then((response) => {
+      dispatch(getProject(image.projectId));
+      dispatch(getProjects());
+    });
+  };
+};
+
+export const moveProjectImage = (oldPos, newPos, id) => {
+  return (dispatch) => {
+    axios
+      .put('/api/project/image/move', { oldPos, newPos, id })
+      .then((response) => {
+        dispatch(getProject(id));
       });
   };
 };

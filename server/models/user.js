@@ -51,4 +51,14 @@ User.prototype.validPassword = function (password) {
   return bcrypt.compareSync(password, this.password);
 };
 
+User.prototype.DeleteAll = function () {
+  return new Promise((res, rej) => {
+    this.images.forEach((image) => {
+      image.destroy();
+    });
+    this.destroy();
+    res('success');
+  });
+};
+
 module.exports = User;

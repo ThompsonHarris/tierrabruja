@@ -9,18 +9,22 @@ class Row extends React.Component {
             const { edit, remove } = val;
             return (
               <div className='p-3 text-gray-800 text-center border border-b w-1/4'>
-                <a
-                  onClick={edit}
-                  className='text-blue-400 hover:text-blue-600 underline cursor-pointer'
-                >
-                  Edit
-                </a>
-                <a
-                  onClick={remove}
-                  className='text-blue-400 hover:text-blue-600 underline pl-6 cursor-pointer'
-                >
-                  Remove
-                </a>
+                {edit ? (
+                  <a
+                    onClick={edit}
+                    className='text-blue-400 hover:text-blue-600 underline cursor-pointer'
+                  >
+                    Edit
+                  </a>
+                ) : null}
+                {remove ? (
+                  <a
+                    onClick={remove}
+                    className='text-blue-400 hover:text-blue-600 underline pl-6 cursor-pointer'
+                  >
+                    Remove
+                  </a>
+                ) : null}
               </div>
             );
           } else {

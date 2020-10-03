@@ -13,11 +13,11 @@ class EditProject extends React.Component {
 
   render() {
     return (
-      <div className='w-full flex flex-col justify-around self-center overflow-hidden'>
+      <div className='w-full flex flex-col justify-around self-center pb-4 h-80per'>
         <div className='w-5/6 self-center text-center text-2xl font-bold text-gray-600 my-4'>
           Edit Project
         </div>
-        <div className='w-full'>
+        <div className='w-full overflow-scroll'>
           <ul className='flex'>
             <li
               className={

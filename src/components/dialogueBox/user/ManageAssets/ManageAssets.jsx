@@ -62,7 +62,7 @@ class ManageAssets extends React.Component {
                 this.props.navSecondaryDialogueMenu(
                   'upload user image',
                   this.props.user.id,
-                  'users'
+                  'user'
                 )
               }
             >

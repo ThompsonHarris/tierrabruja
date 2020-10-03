@@ -22,6 +22,9 @@ class FormOption extends React.Component {
           {this.props.SecondaryDialogueType === 'upload user image' ? (
             <Upload />
           ) : null}
+          {this.props.SecondaryDialogueType === 'upload project image' ? (
+            <Upload />
+          ) : null}
           <div
             className=' absolute top-0 right-0 modal-close cursor-pointer z-30 w-8 h-8 pt-3 pr-3 flex flex-row justify-center'
             onClick={() => {

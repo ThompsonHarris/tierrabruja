@@ -1,5 +1,6 @@
 const db = require('./db');
 const { UUID, UUIDV4, INTEGER, STRING, ENUM } = require('sequelize');
+const { Image } = require('./image');
 
 const Project = db.define('project', {
   id: {
@@ -57,5 +58,15 @@ const Project = db.define('project', {
     allowNull: false,
   },
 });
+
+Project.prototype.DeleteAll = function () {
+  return new Promise((res, rej) => {
+    this.images.forEach((image) => {
+      image.destroy();
+    });
+    this.destroy();
+    res('success');
+  });
+};
 
 module.exports = Project;

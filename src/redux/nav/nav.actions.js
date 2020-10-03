@@ -3,7 +3,12 @@ import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import { convertToBlob } from '../../utils/index.js';
 import { fbStorage } from '../../Firebase/Firebase.utils.js';
-import { getUser } from '../admin/admin.actions';
+import {
+  getUser,
+  getProject,
+  getProjects,
+  getUsers,
+} from '../admin/admin.actions';
 
 export const setUploading = () => ({
   type: NAV_TYPES.UPLOADING,
@@ -61,7 +66,7 @@ export const uploadingToServer = (file, uploadId, catagory) => {
     const formData = new FormData();
     formData.append('file', file);
     axios
-      .post('/api/user/image/upload', formData, {
+      .post(`/api/${catagory}/image/upload`, formData, {
         onUploadProgress: (ProgressEvent) => {
           const percent = (ProgressEvent.loaded / ProgressEvent.total) * 100;
           dispatch(setUpPercent(percent));
@@ -87,18 +92,35 @@ export const uploadingToServer = (file, uploadId, catagory) => {
         return { thumbUpload, FullUpload };
       })
       .then((fileOBJ) => {
-        return axios.post('/api/user/image', {
-          type: 'user',
-          userId: uploadId,
-          thumbImage: fileOBJ.thumbUpload.fileUrl,
-          thumbImagePath: fileOBJ.thumbUpload.path,
-          fullImage: fileOBJ.FullUpload.fileUrl,
-          fullImagePath: fileOBJ.FullUpload.path,
-        });
+        if (catagory === 'user') {
+          return axios.post(`/api/${catagory}/image`, {
+            type: 'user',
+            userId: uploadId,
+            thumbImage: fileOBJ.thumbUpload.fileUrl,
+            thumbImagePath: fileOBJ.thumbUpload.path,
+            fullImage: fileOBJ.FullUpload.fileUrl,
+            fullImagePath: fileOBJ.FullUpload.path,
+          });
+        } else if (catagory === 'project') {
+          return axios.post(`/api/${catagory}/image`, {
+            type: 'project',
+            projectId: uploadId,
+            thumbImage: fileOBJ.thumbUpload.fileUrl,
+            thumbImagePath: fileOBJ.thumbUpload.path,
+            fullImage: fileOBJ.FullUpload.fileUrl,
+            fullImagePath: fileOBJ.FullUpload.path,
+          });
+        }
       })
       .then((response) => {
         dispatch(setUploading());
-        dispatch(getUser(uploadId));
+        if (catagory === 'user') {
+          dispatch(getUser(uploadId));
+          dispatch(getUsers());
+        } else if (catagory === 'project') {
+          dispatch(getProject(uploadId));
+          dispatch(getProjects());
+        }
         dispatch(setUpCatagory(''));
         dispatch(navSecondaryDialogueMenu('', ''));
       });

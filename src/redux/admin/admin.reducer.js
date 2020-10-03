@@ -3,8 +3,29 @@ import { ADMIN_TYPES } from './admin.types';
 const INITIAL_STATE = {
   users: [],
   projects: [],
-  user: {},
-  project: {},
+  user: {
+    createdAt: '',
+    email: '',
+    firstname: '',
+    id: '',
+    images: [],
+    isAdmin: false,
+    lastname: '',
+    updatedAt: '',
+  },
+  project: {
+    address: '',
+    city: '',
+    createdAt: '',
+    description: '',
+    id: '',
+    images: [],
+    state: '',
+    status: '',
+    title: '',
+    updatedAt: '',
+    userId: null,
+  },
 };
 
 export const AdminReducer = (state = INITIAL_STATE, action) => {

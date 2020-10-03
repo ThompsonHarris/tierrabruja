@@ -12,6 +12,11 @@ export const setUserName = (username) => ({
   payload: username,
 });
 
+export const setUserId = (id) => ({
+  type: USER_TYPES.SET_USERID,
+  payload: id,
+});
+
 export const setUserType = (num) => ({
   type: USER_TYPES.SET_PRIVILEGE,
   payload: num,
@@ -29,6 +34,7 @@ export const login = (email, password) => {
       .then((response) => {
         dispatch(setUserName(response.data.username));
         dispatch(setUserType(response.data.isAdmin ? 5 : 0));
+        dispatch(setUserId(response.data.id));
         dispatch(setLogIn(true));
         dispatch(setError(''));
         dispatch(navDialogueMenu('', 0, 0));
@@ -45,6 +51,7 @@ export const verify = (email, password) => {
         if (response.data.user) {
           dispatch(setUserName(response.data.user.email));
           dispatch(setLogIn(true));
+          dispatch(setUserId(response.data.user.id));
           if (response.data.user.isAdmin) {
             dispatch(setUserType(response.data.user.isAdmin ? 5 : 0));
           }
@@ -64,6 +71,7 @@ export const logout = () => {
       .then((response) => {
         console.log(response.data);
         dispatch(setUserName(''));
+        dispatch(setUserId(''));
         dispatch(setUserType(0));
         dispatch(setLogIn(false));
         dispatch(setError(''));
