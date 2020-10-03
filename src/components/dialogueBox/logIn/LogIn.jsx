@@ -21,7 +21,7 @@ class LogIn extends React.Component {
             </div>
             <button
               className={
-                'w-5/6 self-center shadow bg-gray-600 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded my-6'
+                'w-full self-center shadow bg-gray-600 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded my-6'
               }
               onClick={() => this.props.logout()}
             >

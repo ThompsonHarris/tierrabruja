@@ -25,13 +25,6 @@ const User = db.define(
         isEmail: true,
       },
     },
-    username: {
-      type: STRING,
-      allowNull: false,
-      validate: {
-        len: [3, 20],
-      },
-    },
     password: {
       type: STRING,
       allowNull: false,
@@ -56,6 +49,16 @@ const User = db.define(
 
 User.prototype.validPassword = function (password) {
   return bcrypt.compareSync(password, this.password);
+};
+
+User.prototype.DeleteAll = function () {
+  return new Promise((res, rej) => {
+    this.images.forEach((image) => {
+      image.destroy();
+    });
+    this.destroy();
+    res('success');
+  });
 };
 
 module.exports = User;

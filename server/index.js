@@ -4,6 +4,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const { db } = require('./models/index');
 const cookieParser = require('cookie-parser');
+const fileUpload = require('express-fileupload');
 require('dotenv').config();
 
 const PORT = process.env.PORT || 3000;
@@ -12,6 +13,8 @@ const app = express();
 
 app.use(cookieParser());
 
+app.use(fileUpload());
+
 app.use(express.json());
 
 app.use((req, res, next) => {
@@ -19,14 +22,18 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use(express.static(path.join(__dirname, '../dist')));
+
 app.use(require('./cookies'));
 
-app.use(express.static(path.join(__dirname, '../dist')));
+app.use('/api', apiRouter);
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../dist/index.html'));
+});
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
-app.use('/api', apiRouter);
 
 const startServer = new Promise((res, rej) => {
   app.listen(PORT, () => {

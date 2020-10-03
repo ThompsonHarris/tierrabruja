@@ -1,6 +1,8 @@
 const express = require('express');
 const mailRouter = require('./email.js');
 const sessionRouter = require('./session');
+const userRouter = require('./user');
+const projectRouter = require('./projects');
 
 const apiRouter = express.Router();
 
@@ -11,7 +13,7 @@ apiRouter.use((req, res, next) => {
     req.adminAuth = false;
     req.user.id = req.cookies.sessionId;
   }
-  if (!req.user.admin) {
+  if (!req.user.isAdmin) {
     req.adminAuth = false;
     next();
   } else {
@@ -22,5 +24,7 @@ apiRouter.use((req, res, next) => {
 
 apiRouter.use('/session', sessionRouter);
 apiRouter.use('/email', mailRouter);
+apiRouter.use('/user', userRouter);
+apiRouter.use('/project', projectRouter);
 
 module.exports = apiRouter;

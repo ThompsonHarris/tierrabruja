@@ -19,3 +19,12 @@
 .cus-bg-blue {
   background: rgb(60, 104, 129);
 }
+
+.cus-fill-blue {
+  fill: rgb(60, 104, 129);
+  color: rgb(60, 104, 129);
+}
+
+.h-80per {
+  max-height: 80vh;
+}

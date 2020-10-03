@@ -1,19 +1,26 @@
-const { db, User } = require('./server/models');
+const { db, User, Image, Project } = require('./server/models');
 
 const seed = async () => {
   try {
     await db.sync({ force: true });
-    await User.create({
+    const user1 = await User.create({
       firstname: 'Tierra',
       lastname: 'Bruja',
       email: 'admin@tierrabruja.com',
-      username: 'admin',
       password: 'password',
       isAdmin: true,
     });
+    const project1 = await Project.create({
+      title: 'site 1',
+      description: 'This is a test site and not the real thing.',
+      address: '409 quincy brooklyn ny 11221',
+      state: 'NY',
+      city: 'NY',
+      status: 'PENDING',
+    });
     console.log(`Successful seeding in tierrabruja.`);
     await process.exit(0);
-  } catch {
+  } catch (e) {
     console.log('ERROR', e);
     console.error(`Error with seeding tierrabruja!`);
     process.exit(1);
