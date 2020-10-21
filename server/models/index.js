@@ -3,6 +3,7 @@ const Project = require('./project');
 const Image = require('./image');
 const User = require('./user');
 const Session = require('./session');
+const Setting = require('./setting');
 
 User.hasMany(Project);
 Project.belongsTo(User);
@@ -13,4 +14,7 @@ Image.belongsTo(Project);
 User.hasMany(Image);
 Image.belongsTo(User);
 
-module.exports = { db, Project, Image, User, Session };
+Setting.hasMany(Image);
+Image.belongsTo(Setting);
+
+module.exports = { db, Project, Image, User, Session, Setting };

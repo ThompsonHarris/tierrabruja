@@ -1,4 +1,5 @@
 const { db, User, Image, Project } = require('./server/models');
+const Setting = require('./server/models/setting');
 
 const seed = async () => {
   try {
@@ -17,6 +18,13 @@ const seed = async () => {
       state: 'NY',
       city: 'NY',
       status: 'PENDING',
+    });
+    const globalSettings = await Setting.create({
+      sitename: 'Tierra Bruja',
+      sitedescription: 'A landscape Architecture design firm',
+      defaultemail: 'tierrabruja@gmail.com',
+      aboutdescription:
+        'Tierra Bruja was founded by Babbie Dunnington and Margaret ...',
     });
     console.log(`Successful seeding in tierrabruja.`);
     await process.exit(0);

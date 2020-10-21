@@ -1,5 +1,6 @@
 const path = require('path');
 const Dotenv = require('dotenv-webpack');
+require('dotenv').config();
 
 const config = {
   mode: 'production',
@@ -30,6 +31,9 @@ const config = {
     ],
   },
   plugins: [new Dotenv()],
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
 };
 
 module.exports = config;
