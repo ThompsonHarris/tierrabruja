@@ -14,7 +14,7 @@ const Image = db.define('image', {
   },
   type: {
     type: ENUM,
-    values: ['user', 'project'],
+    values: ['user', 'project', 'settings'],
     allowNull: false,
   },
   thumbImage: {
@@ -92,6 +92,34 @@ Image.beforeCreate((instance, options) => {
       .catch((err) => {
         console.log('before create failed', err);
       });
+  } else if (instance.type === 'settings') {
+    return Image.findAll({
+      where: {
+        settingId: instance.settingId,
+      },
+      order: [['order', 'ASC']],
+    })
+      .then((collection) => {
+        if (collection.length) {
+          const last = collection.reduce((acc, { order }) => {
+            if (acc) {
+              if (acc < order) {
+                acc = order;
+                return acc;
+              }
+            } else {
+              acc = order;
+              return acc;
+            }
+          }, null);
+          instance.order = last + 1;
+        } else {
+          instance.order = 1;
+        }
+      })
+      .catch((err) => {
+        console.log('before create failed', err);
+      });
   }
 });
 
@@ -124,6 +152,20 @@ Image.prototype.deleteSort = async function () {
     } catch (e) {
       return { error: e };
     }
+  } else if (this.type === 'settings') {
+    try {
+      await this.destroy();
+      const allImages = await Image.findAll({
+        where: { settingId: this.settingId },
+        order: [['order', 'ASC']],
+      });
+      await allImages.forEach(async (ele, idx) => {
+        await ele.update({ order: idx + 1 });
+      });
+      return { settingId: this.settingId };
+    } catch (e) {
+      return { error: e };
+    }
   }
 };
 
@@ -149,6 +191,22 @@ Image.prototype.moveSort = async function (newPos) {
     try {
       const tempInstance = await Image.findOne({
         where: { order: newPos, projectId: this.projectId },
+      });
+      await this.update({ order: newPos });
+      if (tempInstance) {
+        await tempInstance.update({
+          order: tempOrder,
+        });
+      }
+      return { message: 'successfully re-ordered' };
+    } catch (e) {
+      return { error: e };
+    }
+  } else if (this.type === 'settings') {
+    const tempOrder = this.order;
+    try {
+      const tempInstance = await Image.findOne({
+        where: { order: newPos, settingId: this.settingId },
       });
       await this.update({ order: newPos });
       if (tempInstance) {

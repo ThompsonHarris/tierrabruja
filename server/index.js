@@ -5,7 +5,6 @@ const bodyParser = require('body-parser');
 const { db } = require('./models/index');
 const cookieParser = require('cookie-parser');
 const fileUpload = require('express-fileupload');
-require('dotenv').config();
 
 const PORT = process.env.PORT || 3000;
 

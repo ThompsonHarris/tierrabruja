@@ -7,6 +7,7 @@ import AddProject from './project/AddProject.jsx';
 import AddUser from './user/AddUser.jsx';
 import EditProject from './project/EditProject.jsx';
 import EditUser from './user/EditUser.jsx';
+import EditImage from './EditImage/EditImage.jsx';
 
 import { navDialogueMenu } from '../../redux/nav/nav.actions.js';
 
@@ -37,6 +38,7 @@ class Form extends React.Component {
           {this.props.type === 'edit user' ? <EditUser /> : null}
           {this.props.type === 'add project' ? <AddProject /> : null}
           {this.props.type === 'edit project' ? <EditProject /> : null}
+          {this.props.type === 'edit images' ? <EditImage /> : null}
           <div
             className=' absolute top-0 right-0 modal-close cursor-pointer z-30 w-8 h-8 pt-3 pr-3 flex flex-row justify-center'
             onClick={() => {

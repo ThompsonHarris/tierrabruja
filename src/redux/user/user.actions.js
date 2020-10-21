@@ -1,6 +1,7 @@
 import { USER_TYPES } from './user.types';
 import axios from 'axios';
 import { navDialogueMenu } from '../nav/nav.actions';
+import { fetchSiteInfo } from '../general/general.actions';
 
 export const setLogIn = (boolean) => ({
   type: USER_TYPES.LOGGEDIN,
@@ -45,6 +46,7 @@ export const login = (email, password) => {
 
 export const verify = (email, password) => {
   return (dispatch) => {
+    dispatch(fetchSiteInfo());
     axios
       .get('/api/session/verify')
       .then((response) => {

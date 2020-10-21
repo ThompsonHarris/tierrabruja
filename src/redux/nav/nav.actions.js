@@ -9,6 +9,7 @@ import {
   getProjects,
   getUsers,
 } from '../admin/admin.actions';
+import { fetchSiteInfo } from '../general/general.actions';
 
 export const setUploading = () => ({
   type: NAV_TYPES.UPLOADING,
@@ -110,6 +111,15 @@ export const uploadingToServer = (file, uploadId, catagory) => {
             fullImage: fileOBJ.FullUpload.fileUrl,
             fullImagePath: fileOBJ.FullUpload.path,
           });
+        } else if (catagory === 'settings') {
+          return axios.post(`/api/${catagory}/image`, {
+            type: 'settings',
+            settingId: uploadId,
+            thumbImage: fileOBJ.thumbUpload.fileUrl,
+            thumbImagePath: fileOBJ.thumbUpload.path,
+            fullImage: fileOBJ.FullUpload.fileUrl,
+            fullImagePath: fileOBJ.FullUpload.path,
+          });
         }
       })
       .then((response) => {
@@ -120,6 +130,8 @@ export const uploadingToServer = (file, uploadId, catagory) => {
         } else if (catagory === 'project') {
           dispatch(getProject(uploadId));
           dispatch(getProjects());
+        } else if (catagory === 'settings') {
+          dispatch(fetchSiteInfo());
         }
         dispatch(setUpCatagory(''));
         dispatch(navSecondaryDialogueMenu('', ''));
