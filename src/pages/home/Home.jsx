@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import {Link} from 'react-router-dom'
 //components
 import Logo from '../../components/Icons/Logo.jsx';
 //actions
@@ -9,7 +10,7 @@ class Home extends React.Component {
   render() {
     return (
       <>
-        <div className='container mx-auto flex flex-col justify-center'>
+        <div className='container mx-auto flex flex-col justify-center h-screen'>
           <Logo className='fill-current cus-blue' />
           <a
             className='text-center cursor-pointer font-bold cus-blue animate-bounce'
@@ -17,12 +18,7 @@ class Home extends React.Component {
           >
             summon us
           </a>
-          <a
-            className='text-center cursor-pointer font-bold cus-blue animate-bounce'
-            onClick={() => this.props.navDialogueMenu('login')}
-          >
-            login
-          </a>
+          <Link to='/portfolio' className={'text-center cursor-pointer font-bold cus-blue animate-bounce'}>portfolio</Link>
         </div>
       </>
     );
