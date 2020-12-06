@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const path = require('path');
 const Dotenv = require('dotenv-webpack');
 require('dotenv').config();
@@ -30,7 +31,21 @@ const config = {
       },
     ],
   },
-  plugins: [new Dotenv()],
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        EMAIL: JSON.stringify(process.env.EMAIL),
+        PASS: JSON.stringify(process.env.PASS),
+        apiKey: JSON.stringify(process.env.apiKey),
+        authDomain: JSON.stringify(process.env.authDomain),
+        databaseURL: JSON.stringify(process.env.databaseURL),
+        projectId: JSON.stringify(process.env.projectId),
+        storageBucket: JSON.stringify(process.env.storageBucket),
+        messagingSenderId: JSON.stringify(process.env.messagingSenderId),
+        appId: JSON.stringify(process.env.appId),
+      },
+    }),
+  ],
   resolve: {
     extensions: ['.js', '.jsx'],
   },

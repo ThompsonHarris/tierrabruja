@@ -4,7 +4,7 @@ import {
   navDialogueMenu,
   navSecondaryDialogueMenu,
 } from '../../redux/nav/nav.actions.js';
-import Upload from '../SecondaryDialogueMenu/upload/Upload.js';
+import Upload from '../SecondaryDialogueMenu/upload/Upload.jsx';
 
 class FormOption extends React.Component {
   render() {

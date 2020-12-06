@@ -1,7 +1,8 @@
 module.exports = {
   purge: {
-    // enabled: true,
-    // content: ['./src/**/*.jsx'],
+    enabled: true,
+    content: ['./src/**/*.jsx',],
+     // These options are passed through directly to PurgeCSS
   },
   target: 'relaxed',
   prefix: '',
