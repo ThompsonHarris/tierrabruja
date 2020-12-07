@@ -49,6 +49,7 @@ class LogIn extends React.Component {
               placeholder='Enter your password'
               onChange={(e) => this.onChange(e)}
               value={this.state.password}
+              type='password'
             />
             <button
               className={
