@@ -4,7 +4,7 @@ import ManageAssets from './manageAssets/ManageAssets';
 class EditImage extends React.Component {
   render() {
     return (
-      <div>
+      <div className='flex flex-col justify-center bg-black overflow-scroll '>
         <ManageAssets />
       </div>
     );

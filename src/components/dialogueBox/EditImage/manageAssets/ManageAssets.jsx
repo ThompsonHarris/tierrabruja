@@ -29,8 +29,7 @@ class ManageAssets extends React.Component {
   };
   render() {
     return (
-      <div className='flex flex-col justify-center '>
-        <div className='w-full cus-bg-blue text-center text-2xl mb-6 text-gray-400 flex flex-col justify-start'>
+        <div className='w-full cus-bg-blue text-center text-2xl text-gray-400 flex flex-col justify-start'>
           <div className='self-center mb-3'>resources</div>
           <div className='self-center mb-3'>
             <svg
@@ -74,7 +73,6 @@ class ManageAssets extends React.Component {
             </div>
           </div>
         </div>
-      </div>
     );
   }
 }
