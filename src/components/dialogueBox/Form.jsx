@@ -31,7 +31,7 @@ class Form extends React.Component {
             : 'translateY(-100%)',
         }}
       >
-        <div class='bg-white font-bold rounded-lg border shadow-lg sm:p-10 p-0 w-full relative'>
+        <div class='bg-white font-bold rounded-lg border shadow-lg sm:p-10 p-0 w-full relative max-h-5/6 overflow-scroll'>
           {this.props.type === 'email' ? <Email /> : null}
           {this.props.type === 'login' ? <LogIn /> : null}
           {this.props.type === 'add user' ? <AddUser /> : null}

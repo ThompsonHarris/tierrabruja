@@ -10,7 +10,7 @@ class Portfolio extends React.Component{
         {
           this.props.images.map((img)=>{
             return (
-              <img src={img.fullImage} className='w-full object-cover my-8'/>
+              <img src={img.fullImage} className='w-full object-scale-down my-8 max-h-5/6x'/>
             )
           })
         }
