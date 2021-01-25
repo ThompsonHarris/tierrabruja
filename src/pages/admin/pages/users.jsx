@@ -10,6 +10,7 @@ import {
 
 class User extends React.Component {
   componentDidMount() {
+    window.scrollTo(0, 0);
     this.props.getUsers();
   }
 

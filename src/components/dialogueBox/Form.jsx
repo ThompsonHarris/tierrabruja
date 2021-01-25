@@ -22,8 +22,9 @@ class Form extends React.Component {
 
   render() {
     return (
+      
       <div
-        className='fixed transition-all duration-500 ease-in-out flex items-center justify-center h-screen invisible text-black overflow-hidden sm:w-1/3 w-5/6'
+        className='z-30 transition-all duration-500 ease-in-out fixed inset-0 flex justify-center'
         style={{
           visibility: this.props.dialogueMenu ? 'visible' : 'hidden',
           transform: this.props.dialogueMenu
@@ -31,7 +32,15 @@ class Form extends React.Component {
             : 'translateY(-100%)',
         }}
       >
-        <div class='bg-white font-bold rounded-lg border shadow-lg sm:p-10 p-0 w-full relative max-h-5/6 overflow-scroll'>
+        <div className="relative px-6 sm:px-8 h-full flex flex-col justify-center w-screen" title='bg' onClick={(e) => {
+          if(e.target.title==='bg'){
+            this.props.navDialogueMenu('');
+          }
+        }}>
+        <div class='bg-white font-bold rounded-lg border shadow-lg sm:p-10 p-0 relative max-h-5/6 overflow-scroll lg:w-3/6 md:w-4/6 sm:w-5/6 w-5/6 self-center'
+        style={{
+          minHeight: '25vh'
+        }}>
           {this.props.type === 'email' ? <Email /> : null}
           {this.props.type === 'login' ? <LogIn /> : null}
           {this.props.type === 'add user' ? <AddUser /> : null}
@@ -54,6 +63,7 @@ class Form extends React.Component {
             </svg>
           </div>
         </div>
+      </div>
       </div>
     );
   }

@@ -10,7 +10,7 @@ class FormOption extends React.Component {
   render() {
     return (
       <div
-        className='fixed transition-all duration-500 ease-in-out flex items-center justify-center h-screen invisible text-black overflow-hidden sm:w-1/3 w-5/6'
+        className='z-40 transition-all duration-500 ease-in-out fixed inset-0 flex justify-center'
         style={{
           visibility: this.props.SecondaryDialogue ? 'visible' : 'hidden',
           transform: this.props.SecondaryDialogue
@@ -18,7 +18,15 @@ class FormOption extends React.Component {
             : 'translateY(-100%)',
         }}
       >
-        <div class='bg-white font-bold rounded-lg border shadow-lg sm:p-10 p-0 w-full relative'>
+      <div className="relative px-6 sm:px-8 h-full flex flex-col justify-center w-screen bg" title='bg2' onClick={(e) => {
+        if(e.target.title==='bg2'){
+          this.props.navSecondaryDialogueMenu('');
+        }
+      }}>
+      <div class='bg-white font-bold rounded-lg border shadow-lg sm:p-10 p-0 relative max-h-5/6 overflow-scroll lg:w-3/6 md:w-4/6 sm:w-5/6 w-5/6 self-center'
+      style={{
+        minHeight: '25vh'
+      }}>
           {this.props.SecondaryDialogueType === 'upload user image' ? (
             <Upload />
           ) : null}
@@ -42,6 +50,7 @@ class FormOption extends React.Component {
               <path d='M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z'></path>
             </svg>
           </div>
+        </div>
         </div>
       </div>
     );

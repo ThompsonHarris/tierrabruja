@@ -15,6 +15,10 @@ export const setUploading = () => ({
   type: NAV_TYPES.UPLOADING,
 });
 
+export const mobileMenu = () => ({
+  type: NAV_TYPES.MOBILE_MENU,
+});
+
 export const setUpPercent = (percent) => ({
   type: NAV_TYPES.UPPERCENT,
   payload: percent,

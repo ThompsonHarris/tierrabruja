@@ -7,20 +7,26 @@ import Logo from '../../components/Icons/Logo.jsx';
 import { navDialogueMenu } from '../../redux/nav/nav.actions.js';
 
 class Home extends React.Component {
+  componentDidMount() {
+    window.scrollTo(0, 0);
+}
   render() {
     return (
-      <>
-        <div className='container mx-auto flex flex-col justify-center h-screen'>
-          <Logo className='fill-current cus-blue' />
+      
+        <div className='flex flex-col justify-between w-full'
+        style={{height:'80vh'}}>
+          <Logo className='fill-current cus-blue'/>
           <a
             className='text-center cursor-pointer font-bold cus-blue animate-bounce'
-            onClick={() => this.props.navDialogueMenu('email')}
+            onClick={() => {
+              window.scrollTo(0, 0);
+              this.props.navDialogueMenu('email')
+            }}
           >
             summon us
           </a>
-          <Link to='/portfolio' className={'text-center cursor-pointer font-bold cus-blue animate-bounce'}>portfolio</Link>
         </div>
-      </>
+      
     );
   }
 }

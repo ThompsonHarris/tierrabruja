@@ -1,5 +1,5 @@
 const db = require('./db');
-const { STRING } = require('sequelize');
+const { STRING,TEXT } = require('sequelize');
 
 const Setting = db.define('setting', {
   sitename: {
@@ -15,7 +15,7 @@ const Setting = db.define('setting', {
     allowNull: false,
   },
   aboutdescription: {
-    type: STRING,
+    type: TEXT,
     allowNull: false,
   },
 });

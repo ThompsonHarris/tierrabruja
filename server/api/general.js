@@ -130,7 +130,7 @@ generalRouter.put('/', validateAuth(), (req, res, next) => {
   } = req.body;
   Setting.findAll()
     .then((settings) => {
-      settings[0].update({
+      return settings[0].update({
         sitename,
         sitedescription,
         defaultemail,
