@@ -2,20 +2,29 @@ import React from 'react'
 import {connect} from 'react-redux'
 
 class Portfolio extends React.Component{
+  componentDidMount() {
+    window.scrollTo(0, 0);
+}
   render(){
     return (
-      <div className='lg:w-11/12 md:w-5/6 w-4/6 flex flex-row justify-center'>
-        <div className='items-center flex flex-col justify-start w-full'>
-        <div className='text-center font-bold cus-blue animate-bounce mt-2'>** images below **</div>
+      <div className="w-full min mb-24" style={{minHeight:'80vh'}}>
         {
           this.props.images.map((img)=>{
             return (
-              <img src={img.fullImage} className='w-full object-scale-down my-8 max-h-5/6x'/>
+              <div className="overflow-hidden text-gray-700 body-font">
+              <div className="container px-5 mx-auto lg:px-32">
+              <div className="flex flex-wrap ">
+              <div className="flex flex-wrap w-full">
+              <div className="w-full">
+              <img alt="gallery" className="block object-cover object-center w-full h-full min-h-24 rounded-lg bg-gray-600"src={img.fullImage}/>
+              </div>
+              </div>
+              </div>
+              </div>
+              </div>
             )
           })
         }
-
-        </div>
       </div>
     )
 }

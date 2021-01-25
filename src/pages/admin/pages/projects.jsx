@@ -11,6 +11,7 @@ import {
 class Project extends React.Component {
   componentDidMount() {
     this.props.getProjects();
+    window.scrollTo(0, 0);
   }
 
   HandleEdit = (id) => {

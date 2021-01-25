@@ -1,6 +1,7 @@
 import { NAV_TYPES } from './nav.types';
 
 const initialState = {
+  mobileMenu: false,
   dialogueMenu: false,
   dialogueType: '',
   DialogueOption: '',
@@ -16,6 +17,11 @@ const initialState = {
 
 export const NavReducer = (state = initialState, action) => {
   switch (action.type) {
+    case NAV_TYPES.MOBILE_MENU:
+      return {
+        ...state,
+        mobileMenu: !state.mobileMenu
+      }
     case NAV_TYPES.DIALOGUE_MENU:
       return {
         ...state,

@@ -11,8 +11,6 @@ const config = {
   appId: process.env.appId,
 };
 
-console.log('storage bucket', process.env.storageBucket)
-
 firebase.initializeApp(config);
 
 export const fbStorage = firebase.storage();

@@ -34,6 +34,7 @@ const config = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
+        LOGGER: JSON.stringify(process.env.LOGGER),
         EMAIL: JSON.stringify(process.env.EMAIL),
         PASS: JSON.stringify(process.env.PASS),
         apiKey: JSON.stringify(process.env.apiKey),

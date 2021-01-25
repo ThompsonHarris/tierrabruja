@@ -10,6 +10,7 @@ class Settings extends React.Component {
   state = {};
 
   componentDidMount() {
+      window.scrollTo(0, 0);
     this.setState({
       SiteName: this.props.SiteName,
       Description: this.props.Description,
@@ -19,6 +20,7 @@ class Settings extends React.Component {
   }
 
   onChange = (e) => {
+    console.log(this.state.AboutDescription)
     this.setState({
       [e.target.title]: e.target.value,
     });
