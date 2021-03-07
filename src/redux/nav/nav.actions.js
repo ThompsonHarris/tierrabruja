@@ -51,7 +51,7 @@ export const navSecondaryDialogueMenu = (type, option = '', optionTwo = '') => {
 export const sendEmail = (name, email, subject, text) => {
   return (dispatch) => {
     axios
-      .post('/api/email/sendemail', { name, email, subject, text })
+      .post('/api/email/sendsgemail', { name, email, subject, text })
       .then(({ data: { message } }) => {
         console.log('message:', message);
         if (message === 'success') {
