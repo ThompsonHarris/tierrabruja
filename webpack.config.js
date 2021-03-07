@@ -4,7 +4,7 @@ const Dotenv = require('dotenv-webpack');
 require('dotenv').config();
 
 const config = {
-  mode: 'production',
+  mode: process.env.NODE_ENV || 'production',
   entry: path.join(__dirname, 'src'),
   output: {
     path: path.join(__dirname, 'dist/js/'),

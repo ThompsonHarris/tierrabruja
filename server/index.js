@@ -7,7 +7,7 @@ const cookieParser = require('cookie-parser');
 const fileUpload = require('express-fileupload');
 
 const PORT = process.env.PORT || 3000;
-
+console.log(process.env.NODE_ENV)
 const app = express();
 
 app.use(cookieParser());
@@ -15,6 +15,8 @@ app.use(cookieParser());
 app.use(fileUpload());
 
 app.use(express.json());
+
+
 
 app.use((req, res, next) => {
   console.log(`${req.method} ${req.path}`);

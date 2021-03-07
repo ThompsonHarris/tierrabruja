@@ -546,6 +546,12 @@ video {
   }
 }
 
+.space-y-4 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(1rem * var(--tw-space-y-reverse));
+}
+
 .appearance-none {
   -webkit-appearance: none;
      -moz-appearance: none;
@@ -560,6 +566,11 @@ video {
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
+}
+
+.bg-gray-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgba(243, 244, 246, var(--tw-bg-opacity));
 }
 
 .bg-gray-200 {
@@ -587,6 +598,11 @@ video {
   background-color: rgba(252, 211, 77, var(--tw-bg-opacity));
 }
 
+.hover\:bg-red-600:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgba(220, 38, 38, var(--tw-bg-opacity));
+}
+
 .hover\:bg-yellow-400:hover {
   --tw-bg-opacity: 1;
   background-color: rgba(251, 191, 36, var(--tw-bg-opacity));
@@ -597,9 +613,17 @@ video {
   background-color: rgba(96, 165, 250, var(--tw-bg-opacity));
 }
 
+.focus\:bg-transparent:focus {
+  background-color: transparent;
+}
+
 .focus\:bg-white:focus {
   --tw-bg-opacity: 1;
   background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
+}
+
+.bg-opacity-50 {
+  --tw-bg-opacity: 0.5;
 }
 
 .border-black {
@@ -630,6 +654,11 @@ video {
 .border-gray-600 {
   --tw-border-opacity: 1;
   border-color: rgba(75, 85, 99, var(--tw-border-opacity));
+}
+
+.focus\:border-red-500:focus {
+  --tw-border-opacity: 1;
+  border-color: rgba(239, 68, 68, var(--tw-border-opacity));
 }
 
 .rounded {
@@ -668,6 +697,10 @@ video {
 
 .border-dashed {
   border-style: dashed;
+}
+
+.border-0 {
+  border-width: 0px;
 }
 
 .border-2 {
@@ -744,6 +777,10 @@ video {
 
 .flex-wrap {
   flex-wrap: wrap;
+}
+
+.items-end {
+  align-items: flex-end;
 }
 
 .items-center {
@@ -875,6 +912,14 @@ video {
 .text-3xl {
   font-size: 1.875rem;
   line-height: 2.25rem;
+}
+
+.leading-7 {
+  line-height: 1.75rem;
+}
+
+.leading-8 {
+  line-height: 2rem;
 }
 
 .leading-none {
@@ -1028,6 +1073,10 @@ video {
   margin-bottom: 2.5rem;
 }
 
+.mb-12 {
+  margin-bottom: 3rem;
+}
+
 .mb-16 {
   margin-bottom: 4rem;
 }
@@ -1072,6 +1121,11 @@ video {
 
 .opacity-75 {
   opacity: 0.75;
+}
+
+.outline-none {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
 }
 
 .focus\:outline-none:focus {
@@ -1164,6 +1218,11 @@ video {
 .py-12 {
   padding-top: 3rem;
   padding-bottom: 3rem;
+}
+
+.py-24 {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
 }
 
 .pb-1 {
@@ -1261,6 +1320,10 @@ video {
   left: 0px;
 }
 
+.-top-64 {
+  top: -16rem;
+}
+
 * {
   --tw-shadow: 0 0 #0000;
 }
@@ -1282,6 +1345,17 @@ video {
   --tw-ring-color: rgba(59, 130, 246, 0.5);
   --tw-ring-offset-shadow: 0 0 #0000;
   --tw-ring-shadow: 0 0 #0000;
+}
+
+.focus\:ring-2:focus {
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+}
+
+.focus\:ring-red-200:focus {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgba(254, 202, 202, var(--tw-ring-opacity));
 }
 
 .fill-current {
@@ -1537,12 +1611,22 @@ video {
   transition-duration: 150ms;
 }
 
+.transition-colors {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
 .ease-in-out {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .duration-100 {
   transition-duration: 100ms;
+}
+
+.duration-200 {
+  transition-duration: 200ms;
 }
 
 .duration-500 {
@@ -1646,6 +1730,18 @@ video {
 }
 
 @media (min-width: 640px) {
+  .sm\:space-y-0 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-y-reverse: 0;
+    margin-top: calc(0px * calc(1 - var(--tw-space-y-reverse)));
+    margin-bottom: calc(0px * var(--tw-space-y-reverse));
+  }
+
+  .sm\:space-x-4 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-x-reverse: 0;
+    margin-right: calc(1rem * var(--tw-space-x-reverse));
+    margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
+  }
+
   .sm\:bg-transparent {
     background-color: transparent;
   }

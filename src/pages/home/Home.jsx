@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import {Link} from 'react-router-dom'
 //components
 import Logo from '../../components/Icons/Logo.jsx';
+import Newsletter from '../../components/Newsletter/Newletter'
 //actions
 import { navDialogueMenu } from '../../redux/nav/nav.actions.js';
 
@@ -12,7 +13,7 @@ class Home extends React.Component {
 }
   render() {
     return (
-      
+      <>
         <div className='flex flex-col justify-between w-full'
         style={{height:'80vh'}}>
           <Logo className='fill-current cus-blue'/>
@@ -26,6 +27,8 @@ class Home extends React.Component {
             summon us
           </a>
         </div>
+        <Newsletter/>
+        </>
       
     );
   }

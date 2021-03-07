@@ -10,7 +10,7 @@
     "watch:build": "webpack -w",
     "watch:start": "node-dev server",
     "watch:css": "postcss src/tailwind.css -o src/app.css",
-    "dev": "npm-run-all --parallel watch:*"
+    "dev": "NODE_ENV=development npm-run-all --parallel watch:*"
   },
   "author": "",
   "license": "ISC",
